@@ -7,8 +7,6 @@ public class MinOperationsToMakeXZero {
         public static void main(String[] args) {
             int[] nums = {1, 1, 4, 3, 2};
             int x = 5;
-            int left = 0;
-            int right = 0;
             int totalSum = Arrays.stream(nums).sum();
             int target = totalSum - x;
             System.out.println(findTheMinOperations(nums, target, totalSum, x));
