@@ -49,4 +49,56 @@ public class BinaryTree <T>{
     public boolean isEmpty(){
         return size == 0;
     }
+
+    public boolean delete(T val){
+        Node<T> target = null;
+        Queue<Node<T>> queue = new ArrayDeque<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            Node<T> curr = queue.poll();
+            if(val.equals(curr.data)){
+                target = curr;
+                break;
+            }
+
+            if(curr.left != null)queue.offer(curr.left);
+            if(curr.right != null)queue.offer(curr.right);
+        }
+
+        if(target == null) return false;
+        Node<T> parent = null;
+        Node<T> lastNode = root;
+        queue.clear();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            lastNode = queue.poll();
+            if(lastNode.left != null){
+                queue.offer(lastNode.left);
+                parent = lastNode;
+            }
+            if(lastNode.right != null){
+                queue.offer(lastNode.right);
+                parent = lastNode;
+            }
+        }
+
+        if(target == root && target.left != null && target.right != null){
+            root = null;
+            size -= 1;
+            return true;
+        }
+
+        if(target == lastNode){
+            if(parent.right == lastNode) parent.right = null;
+            else if(parent.left == lastNode) parent.left = null;
+            size -= 1;
+            return true;
+        }
+
+        target.data = lastNode.data;
+        if(parent.right == lastNode) parent.right = null;
+        else if(parent.left == lastNode) parent.left = null;
+        size -= 1;
+        return true;
+    }
 }
