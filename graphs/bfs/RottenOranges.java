@@ -1,4 +1,6 @@
-package graphs;
+package graphs.bfs;
+
+import java.util.*;
 
 class OrangeInfo{
     int row;
