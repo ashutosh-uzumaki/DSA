@@ -10,8 +10,8 @@ public class CourseSchedule {
         }
 
         for(int[] prerequisite: prerequisites){
-            int x = prerequisite[0];
-            int y = prerequisite[1];
+            int x = prerequisite[1];
+            int y = prerequisite[0];
 
             adj.get(x).add(y);
         }
